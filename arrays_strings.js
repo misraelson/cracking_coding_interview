@@ -32,7 +32,6 @@ let findPerm = (str1, str2) => {
 
 let string1 = "nodejs"
 let string2 = "jsnode"
-
 // findPerm(string1, string2)
 
 
@@ -65,8 +64,7 @@ let findPermWithHash = (str1, str2) => {
 
 let str1 = "ab cde"
 let str2 = "edc ba"
-
-findPermWithHash(str1, str2);
+// findPermWithHash(str1, str2);
 
 // WHAT DID WE LEARN HERE?
 // A quick and easy way to compare objects or arrays is to use JSON.stringify, which then just compares the strings
@@ -74,3 +72,27 @@ findPermWithHash(str1, str2);
 // 1.4
 // Write a method to replace all spaces in a string with '%20'
 
+// Input: "Mr John Smith    "
+// Output: "Mr%20John%20Smith"
+
+// Simplifications => any space that's longer that two chracters can be dropped from the array
+// split string on space
+// loop through array, if element in array === " " && that element is the last element in the array, pop it off
+// we want to check if last elem in array is a space, if so remove from array => possible recursion?
+// otherwise replace the " " with "%20", then join the array and return it
+let strReplace = (string) => {
+  let charArray = string.split('')
+  for (i = charArray.length -1; i >= 0; i--) {
+    if (charArray[i] === " " && i === charArray.length-1) {
+      charArray.pop()
+    } else if (charArray[i] === " ") {
+      charArray[i] = "%20"
+    }
+  }
+  // if (charArray[charArray.length-1] === '%20') {charArray.pop()}
+  console.log(charArray.join(''));
+  return charArray.join('')
+}
+
+let input = "Mt John Baker   "
+strReplace(input);
