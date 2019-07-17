@@ -112,11 +112,12 @@ let input = "Mt John Baker   "
 // ask if string is only letters, no special characters
 // then at end just compare lengths of string to see which one to return
 
-// WHAT DID WE LEARN
+// WHAT DID WE LEARN??
 // BIG DIFFERENCE BETWEEN IF AND ELSE IF
 // ELSE IF WILL ALSO EXECUTE IN THE SAME THREAD, SO WILL DO BOTH THE IF AND THE ELSE IF
 // IF WILL ONLY EXECUTE ONCE, IT NOT AN 'OR' STATEMENT
-// Also the CONCAT method for strings doesn't work with .join() from an array??
+// **DON"T USE CONCAT METHOD FOR STRINGS
+// 
 
 let stringComp = (string) => {
 // PART 1 => write algo to iterate through string + store char count of each char in string in order
@@ -139,9 +140,10 @@ let stringComp = (string) => {
     }
   })
 // PART 2 => loop through array of objects and create a string from keys/values
+// FROM MOZILLA DOCS CONCAT METHOD PAGE => It is strongly recommended that the assignment operators (+, +=) are used instead of the concat() method.
   let newString = ""
   arr.forEach( obj => {
-    newString = newString + Object.keys(obj).join() + Object.values(obj).join()
+    newString += Object.keys(obj).join() + Object.values(obj).join()
   });
 // PART 3 => check if original string is smaller than compressed string => return smaller of two strings
   if (newString.length >= string.length) {
