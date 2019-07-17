@@ -121,6 +121,7 @@ let input = "Mt John Baker   "
 
 let stringComp = (string) => {
 // PART 1 => write algo to iterate through string + store char count of each char in string in order
+// Use if statements everytime so that each statement will be executed EVERY TIME
   let arr = [{}];
   [...string].forEach((char, i, array) => {
     if (i === 0) {
