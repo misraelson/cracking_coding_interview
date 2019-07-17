@@ -95,4 +95,64 @@ let strReplace = (string) => {
 }
 
 let input = "Mt John Baker   "
-strReplace(input);
+// strReplace(input);
+
+
+// Q 1.5
+// Implement basic string compression method
+// If compressed string is not smalled than original string, return original string
+// eg aabcccccaaa => a2b1c5a3
+
+// Simplifications => we know that if there are no repeating characters, then our compression will be larger
+// Base case "a" => a1 => loop through string and add number every time that character is encountered
+// could use a character array, but that would only give us the number of times that character appears
+// seems like we need to create an array of arrays that holds values or a hash of objects
+// the algo needs to check if the next character in the string is equal to the current character, if it is, add to that hash, if not create new object in array
+// think we need to use an array
+// ask if string is only letters, no special characters
+// then at end just compare lengths of string to see which one to return
+
+// WHAT DID WE LEARN
+// BIG DIFFERENCE BETWEEN IF AND ELSE IF
+// ELSE IF WILL ALSO EXECUTE IN THE SAME THREAD, SO WILL DO BOTH THE IF AND THE ELSE IF
+// IF WILL ONLY EXECUTE ONCE, IT NOT AN 'OR' STATEMENT
+// Also the CONCAT method for strings doesn't work with .join() from an array??
+
+let stringComp = (string) => {
+// PART 1 => write algo to iterate through string + store char count of each char in string in order
+  let arr = [{}];
+  [...string].forEach((char, i, array) => {
+    if (i === 0) {
+      lastObj = arr.pop()
+      lastObj[char] = 1
+      arr.push(lastObj)
+    } 
+    if (array[i+1] && char === array[i+1]) {
+      lastObj = arr.pop()
+      lastObj[char] += 1
+      arr.push(lastObj)
+    } 
+    if (array[i+1] && char != array[i+1]) {
+      let nextObj = {}
+      nextObj[array[i+1]] = 1
+      arr.push(nextObj)
+    }
+  })
+// PART 2 => loop through array of objects and create a string from keys/values
+  let newString = ""
+  arr.forEach( obj => {
+    newString = newString + Object.keys(obj).join() + Object.values(obj).join()
+  });
+// PART 3 => check if original string is smaller than compressed string => return smaller of two strings
+  if (newString.length >= string.length) {
+    console.log(string)
+    return string
+  } else {
+    console.log(newString)
+    return newString
+  }
+}
+
+let stringcomp = "aaaab@@@cccccaa";
+
+stringComp(stringcomp);
